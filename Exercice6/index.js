@@ -13,10 +13,14 @@ function clearDisplay() {
 
 function calculateResult() {
     try {
-        let result = eval(document.getElementById('display').value);
+        let expression = display.value;
+        if (expression.includes('/0')) {
+            throw new Error("Division by zero is not allowed");
+        }
+        let result = eval(expression);
         display.value = result;
     } catch (error) {
-        display.value = 'Error';
+        display.value = error.message;
     }
 }
 
